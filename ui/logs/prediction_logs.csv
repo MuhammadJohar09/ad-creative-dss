@@ -1,0 +1,18 @@
+sentiment_score,contains_cta,caption_length,brightness,contrast,face_detected,caption,predicted,user_selected,prediction,timestamp
+-0.4215,1,36,180.0062114197531,89.78437352583762,1,"struggling with skin issues?
+not now",Low,Ad Creative A,Low,2025-05-24 02:15:37
+-0.4574,0,30,225.8565586419753,61.07339556709137,1,"dental problems, remove today!",High,Ad Creative A,High,2025-05-24 02:15:37
+0.1511,1,71,230.23696502057612,51.99780029864225,1,"Do you want to look younger?
+we have you covered.
+Book appointment now!",Facebook,High,2025-05-25 23:25:53
+0.1511,1,71,230.23696502057612,51.99780029864225,1,"Do you want to look younger?
+we have you covered.
+Book appointment now!",Instagram,High,2025-05-25 23:25:55
+0.1511,1,50,230.23696502057612,51.99780029864225,1,"Do you want to look younger?
+Book appointment now!",High,Ad Creative A,High,2025-05-25 23:29:56
+0.4215,0,22,233.87449845679012,46.68727971338404,1,"Our satisfied client.
+",High,Ad Creative A,High,2025-05-25 23:29:56
+0.1511,1,50,230.23696502057612,51.99780029864225,1,"Do you want to look younger?
+Book appointment now!",High,Ad Creative B,High,2025-05-25 23:30:34
+0.1779,0,18,222.2611865569273,48.04280508021522,1,"dental solutions.
+",Medium,Ad Creative B,Medium,2025-05-25 23:30:34

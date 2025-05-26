@@ -1,0 +1,4 @@
+filename,dominant_color_r,dominant_color_g,dominant_color_b,face_detected,sentiment_score,ctr_label
+ad_001.jpg,20,27,41,False,0.4939,High
+ad_002.jpg,81,114,136,True,-0.2942,High
+ad_003.jpg,18,18,19,True,0.0,High

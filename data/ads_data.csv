@@ -1,0 +1,138 @@
+Path,image_filename,caption,ctr_label,platform
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_001.jpg,Brighten your smile in just one visit!,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_002.jpg,"Professional whitening for a red-carpet smile.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_003.jpg,"No more hiding—flash those pearly whites!""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_004.jpg,"Straighten your teeth discreetly with clear aligners.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_005.jpg,"Dental care so smooth, you’ll forget you’re at the clinic.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_006.jpg,"Say goodbye to sensitivity—hello to ice cream!""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_007.jpg,"Your dream smile is only an appointment away.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_008.jpg,"We turn toothaches into tooth wows.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_009.jpg,"Because confidence starts with a healthy smile.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_010.jpg,"Advanced tech for pain-free dentistry.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_011.jpg,"Get a smile that outshines your selfies.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_012.jpg,"Invisible braces, visible results.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_013.jpg,"Dental implants that feel (and look) natural.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_014.jpg,"Fight cavities before they start.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_015.jpg,"A smile makeover in just one session.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_016.jpg,"Perfect teeth shouldn’t be a luxury.""",high,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_017.jpg,"Wake up with a brighter smile every day.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_018.jpg,"No drills, no fear—just flawless teeth.""",medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_019.jpg,"Your smile deserves expert hands.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_020.jpg,"From stained to stunning in 60 minutes.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_021.jpg,"We cater to cowards (and brave souls too).""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_022.jpg,"Dental care that fits your busy life.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_023.jpg,"Because crooked teeth shouldn’t hold you back.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_024.jpg,"Whiter teeth, bolder confidence.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_025.jpg,"Fix gaps without the metal mouth.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_026.jpg,"A smile so radiant, it’s contagious.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_027.jpg,"Gentle care for even the most nervous patients.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_028.jpg,"Teeth whitening that actually works.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_029.jpg,"Stop dreaming about straight teeth—get them!""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_030.jpg,"The secret to a million-dollar smile.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_031.jpg,"Dental care that pampers you.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_032.jpg,"Braces without the awkward phase.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_033.jpg,"Because your smile is your best accessory.""",Medium,Instagram
+ad_034.jpg,ad_034.jpg,"No more yellow—just wow.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_035.jpg,"A smile that matches your ambition.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_036.jpg,"Floss later? We’ll remind you.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_037.jpg,"Where anxiety meets comfort.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_038.jpg,"Smile now, thank us later.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_039.jpg,"Because life’s too short for dull teeth.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_040.jpg,"Your teeth will thank you.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_041.jpg,"Glowing skin is always in season.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_042.jpg,"Acne doesn’t stand a chance here.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_043.jpg,"Skincare so good, you’ll skip makeup.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_044.jpg,"Turn back time with every drop.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_045.jpg,"Hydration that feels like a luxury.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_046.jpg,"Dull skin? Never heard of her.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_047.jpg,"Clinical results without the clinic price.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_048.jpg,"Your skin’s new best friend.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_049.jpg,"Because wrinkles aren’t your destiny.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_050.jpg,"A routine so simple, even your lazy self will stick to it.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_051.jpg,"Brighten, tighten, and glow—no filter needed.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_052.jpg,"Pores? Vanished.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_053.jpg,"Skincare backed by science, loved by skin.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_054.jpg,"Wake up to happier skin every day.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_055.jpg,"Dry skin’s worst enemy.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_056.jpg,"The secret to looking 25 at 35.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_057.jpg,"Your skin deserves this much attention.""",high,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_058.jpg,"Bye-bye, dark circles!""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_059.jpg,"A serum so potent, you’ll see results overnight.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_060.jpg,"Because great skin never goes out of style.""",high,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_061.jpg,"Repair. Renew. Radiate.""",medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_062.jpg,"Flawless skin starts with the right routine.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_063.jpg,"No more guessing—just glowing.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_064.jpg,"Skincare that works while you sleep.""",medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_065.jpg,"Clear skin isn’t luck—it’s strategy.""",high,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_066.jpg,"Your complexion’s reset button.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_067.jpg,"The glow-up your skin has been begging for.""",medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_068.jpg,"Fine lines, meet your match.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_069.jpg,"A moisturizer that actually moisturizes.""",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_070.jpg,"Because sunscreen is the ultimate anti-ager.""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_071.jpg,"Pamper your skin like the royalty it is.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_072.jpg,"Acne scars, consider yourself canceled.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_073.jpg,"The only detox your skin needs.""",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_074.jpg,"Sensitive skin? We’ve got you covered.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_075.jpg,"A toner that does more than just tone.""",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_076.jpg,"Skincare that fits your budget (and your shelf).""",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_077.jpg,"Your face will thank you later.""",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_078.jpg,"Because breakouts shouldn’t ruin your week.""",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_079.jpg,The holy grail of hydration.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_080.jpg,Glass skin isn’t just a trend—it’s a lifestyle.,Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_081.jpg,"Dermatologist-approved, Instagram-loved.",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_082.jpg,"No harsh chemicals, just results.",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_083.jpg,Skincare for people who hate skincare.,Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_084.jpg,The glow is real—and so are the compliments.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_085.jpg,Because adult acne is rude.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_086.jpg,Your skin’s reset starts here.,Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_087.jpg,A cleanser that doesn’t strip your soul.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_088.jpg,"Bye-bye, redness!",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_089.jpg,The only 10-step routine you’ll stick to.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_090.jpg,Skincare that works as hard as you do.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_091.jpg,"Subtle tweaks, stunning results.",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_092.jpg,"Botox so natural, no one will know (but you’ll feel it).",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_093.jpg,Lips plumped to perfection—no duck face here.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_094.jpg,Because aging is optional.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_095.jpg,"Look refreshed, never ‘fake’.",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_096.jpg,Ditch the filter—get the real thing.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_097.jpg,"A little nip, a lot of wow.",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_098.jpg,"Expert hands, artful enhancements.",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_099.jpg,"Confidence, redefined.",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_100.jpg,Flawless skin starts with the right treatment.,Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_101.jpg,Turn back time without turning back your wallet.,Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_102.jpg,Because you deserve to love your reflection.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_103.jpg,A youthful glow in just one session.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_104.jpg,"No surgery, no problem.",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_105.jpg,"Fillers that enhance, not erase.",High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_106.jpg,A fresher face by lunchtime.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_107.jpg,Where science meets beauty.,Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_108.jpg,Your best feature? Customizable.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_109.jpg,Smooth skin starts here.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_110.jpg,"Bye-bye, wrinkles—hello, confidence!",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_111.jpg,A touch-up that speaks volumes.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_112.jpg,"Look like you, just well-rested.",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_113.jpg,Precision treatments for natural beauty.,Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_114.jpg,Because ‘tired’ isn’t your aesthetic.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_115.jpg,A little boost for your best self.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_116.jpg,"No downtime, all results.",Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_117.jpg,Laser treatments that actually work.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_118.jpg,"Skin so smooth, you’ll want to touch it.",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_119.jpg,The secret to looking effortlessly flawless.,Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_120.jpg,A youthful bounce in every injection.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_121.jpg,Because confidence is the best accessory.,Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_122.jpg,Fine lines don’t stand a chance.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_123.jpg,A glow that comes from within (and a little help).,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_124.jpg,"Your skin, but upgraded.",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_125.jpg,"Subtle changes, major compliments.",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_126.jpg,A fresher version of you.,High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_127.jpg,Look like you slept for a year.,Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_128.jpg,Because ‘aging gracefully’ is code for ‘Botox’.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_129.jpg,A little lift goes a long way.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_130.jpg,"Your face, your rules.",Low,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_131.jpg,"No pain, all gain.",Medium,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_132.jpg,"A treatment so good, you’ll forget you had it.",High,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_133.jpg,"Bye-bye, jowls!",Low,Instagram
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_134.jpg,The ultimate self-care upgrade.,High,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_135.jpg,Because you’re worth the investment.,Medium,facebook
+C:\Users\johar\.jupyter\ad-creative-dss\data,ad_136.jpg,A touch of youth in every session.,Low,Instagram
+,ad_137.jpg,,,

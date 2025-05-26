@@ -1,0 +1,121 @@
+image_path,brightness,contrast,face_detected,dominant_color
+/mnt/data/images/data/ad_001.jpg,117.10246399176955,76.30543021515885,False,"(137, 156, 207)"
+/mnt/data/images/data/ad_002.jpg,167.74553497942387,46.983209948082894,True,"(172, 181, 187)"
+/mnt/data/images/data/ad_003.jpg,130.88390860768175,93.49635741228958,True,"(161, 161, 165)"
+/mnt/data/images/data/ad_004.jpg,233.47723593964335,43.21114654124241,True,"(186, 204, 236)"
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_006.jpg,179.85615569272977,46.97937596628689,False,"(103, 134, 157)"
+/mnt/data/images/data/ad_007.jpg,168.7090920781893,83.03520932883791,True,"(163, 187, 206)"
+/mnt/data/images/data/ad_008.jpg,170.7373611111111,63.22551325351462,True,"(18, 22, 31)"
+/mnt/data/images/data/ad_009.jpg,202.99603223593965,63.56731273311017,True,"(146, 177, 218)"
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_011.jpg,197.76646347736624,50.60970641327263,True,"(70, 114, 145)"
+/mnt/data/images/data/ad_012.jpg,128.4619555898491,88.13694062815286,True,"(218, 222, 227)"
+/mnt/data/images/data/ad_013.jpg,179.99292524005486,89.77914258164923,True,"(247, 248, 248)"
+/mnt/data/images/data/ad_014.jpg,131.49559945130315,45.46982733390451,False,"(246, 248, 249)"
+/mnt/data/images/data/ad_015.jpg,147.1936694101509,53.09624967585389,False,"(58, 97, 166)"
+/mnt/data/images/data/ad_016.jpg,125.50905281207133,53.50320726246968,False,"(127, 137, 167)"
+/mnt/data/images/data/ad_017.jpg,157.5142242798354,52.388861088734,False,"(137, 154, 190)"
+/mnt/data/images/data/ad_018.jpg,121.91780109739369,53.22156327194719,False,"(47, 68, 116)"
+/mnt/data/images/data/ad_019.jpg,190.43994718792868,31.493798448731628,False,"(100, 146, 210)"
+/mnt/data/images/data/ad_020.jpg,146.72535185185185,50.48860503011477,False,"(168, 179, 208)"
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_025.jpg,239.61601989026062,58.242004546040036,True,"(253, 253, 253)"
+/mnt/data/images/data/ad_026.jpg,220.68783333333334,55.99933152593005,True,"(45, 45, 46)"
+/mnt/data/images/data/ad_027.jpg,211.9604938271605,68.18842289786417,True,"(235, 238, 239)"
+/mnt/data/images/data/ad_028.jpg,234.86558161865568,50.977735403659416,False,"(54, 61, 234)"
+/mnt/data/images/data/ad_029.jpg,236.02107475994512,49.04289746399443,False,"(54, 61, 234)"
+/mnt/data/images/data/ad_030.jpg,209.34840946502058,75.581170713592,False,"(25, 24, 90)"
+/mnt/data/images/data/ad_031.jpg,117.03865980795611,38.39724656251999,False,"(1, 1, 184)"
+/mnt/data/images/data/ad_032.jpg,211.3559451303155,72.44968567310453,True,"(173, 157, 155)"
+/mnt/data/images/data/ad_033.jpg,221.6911779835391,67.62249214905864,True,"(36, 37, 42)"
+/mnt/data/images/data/ad_034.jpg,214.63860339506172,72.17649816914937,True,"(246, 246, 246)"
+/mnt/data/images/data/ad_035.jpg,222.2550171467764,67.06354581851522,False,"(157, 95, 49)"
+/mnt/data/images/data/ad_036.jpg,208.02909807956104,56.88995215989522,False,"(168, 165, 184)"
+/mnt/data/images/data/ad_037.jpg,208.10716735253772,51.681779882670966,False,"(145, 87, 56)"
+/mnt/data/images/data/ad_038.jpg,213.96820730452674,62.86068767710274,True,"(159, 95, 47)"
+/mnt/data/images/data/ad_039.jpg,209.27727023319616,71.92103400913895,True,"(239, 239, 238)"
+/mnt/data/images/data/ad_040.jpg,220.57087191358025,74.97448284507779,True,"(253, 254, 255)"
+/mnt/data/images/data/ad_041.jpg,211.636688957476,61.26124185747489,True,"(253, 253, 253)"
+/mnt/data/images/data/ad_042.jpg,221.89217764060356,54.945793925848555,True,"(81, 52, 58)"
+/mnt/data/images/data/ad_043.jpg,236.55348336762688,52.2146850197671,False,"(103, 155, 199)"
+/mnt/data/images/data/ad_044.jpg,225.50464849108369,59.061592759170466,True,"(14, 18, 32)"
+/mnt/data/images/data/ad_045.jpg,213.38437242798355,74.70376494199746,True,"(81, 102, 142)"
+/mnt/data/images/data/ad_046.jpg,216.5343295610425,67.49014309256992,True,"(17, 23, 38)"
+/mnt/data/images/data/ad_047.jpg,210.1433058984911,76.83887483024452,True,"(254, 254, 255)"
+/mnt/data/images/data/ad_048.jpg,215.1862842935528,68.20085636931361,True,"(77, 112, 147)"
+/mnt/data/images/data/ad_049.jpg,199.2227700617284,67.57411316159374,True,"(181, 190, 208)"
+/mnt/data/images/data/ad_050.jpg,226.26088305898492,59.41677917447732,True,"(252, 253, 255)"
+/mnt/data/images/data/ad_051.jpg,218.43984910836764,68.22958576543292,True,"(75, 118, 157)"
+/mnt/data/images/data/ad_052.jpg,130.88390860768175,93.49635741228958,True,"(85, 96, 105)"
+/mnt/data/images/data/ad_053.jpg,167.74553497942387,46.983209948082894,True,"(125, 142, 149)"
+/mnt/data/images/data/ad_054.jpg,70.05904320987655,56.11388396262025,True,"(44, 55, 69)"
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_059.jpg,209.6296236282579,66.19401212346035,True,"(69, 116, 148)"
+/mnt/data/images/data/ad_060.jpg,225.18142146776407,37.924667724789714,True,"(13, 13, 14)"
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_063.jpg,217.21210476680383,57.7714409356434,True,"(20, 12, 136)"
+/mnt/data/images/data/ad_064.jpg,204.21529320987653,55.86616491122008,False,"(78, 120, 150)"
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_066.jpg,201.30255229766803,64.41086099548292,True,"(28, 31, 44)"
+/mnt/data/images/data/ad_067.jpg,119.62836505486969,75.17700568837206,True,"(92, 87, 102)"
+/mnt/data/images/data/ad_068.jpg,228.91856395747598,35.12318749984557,True,"(72, 122, 149)"
+/mnt/data/images/data/ad_069.jpg,217.91011145404664,45.56609581411298,True,"(239, 240, 240)"
+/mnt/data/images/data/ad_070.jpg,219.00563580246913,44.37634144977581,True,"(163, 180, 228)"
+/mnt/data/images/data/ad_071.jpg,223.67985322359397,36.15605699999964,True,"(233, 233, 233)"
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_076.jpg,221.116816872428,57.99363589942212,True,"(246, 244, 240)"
+/mnt/data/images/data/ad_077.jpg,199.41347119341563,55.9367287108446,True,"(230, 230, 230)"
+/mnt/data/images/data/ad_078.jpg,212.91730795610425,49.003313595398694,True,"(227, 229, 232)"
+/mnt/data/images/data/ad_079.jpg,223.65687379972564,35.65445546883579,True,"(231, 231, 231)"
+/mnt/data/images/data/ad_080.jpg,223.04636282578875,38.3377302506247,True,"(71, 122, 149)"
+/mnt/data/images/data/ad_081.jpg,199.92525925925926,57.77242129160179,True,"(229, 230, 231)"
+/mnt/data/images/data/ad_082.jpg,206.28107613168723,56.47286695763243,True,"(32, 48, 66)"
+/mnt/data/images/data/ad_083.jpg,195.4221598079561,61.89858880548019,True,"(63, 109, 136)"
+/mnt/data/images/data/ad_084.jpg,215.82339917695472,45.6179455803361,True,"(31, 38, 47)"
+/mnt/data/images/data/ad_085.jpg,210.1033024691358,50.031617547022805,True,"(73, 116, 146)"
+/mnt/data/images/data/ad_086.jpg,222.9696488340192,50.681781991884066,True,"(185, 208, 219)"
+/mnt/data/images/data/ad_087.jpg,201.64389231824418,76.55179473704447,True,"(15, 17, 25)"
+/mnt/data/images/data/ad_088.jpg,191.6950925925926,80.12582366530668,True,"(245, 245, 245)"
+/mnt/data/images/data/ad_089.jpg,206.68701131687243,66.0467300770614,True,"(81, 113, 151)"
+/mnt/data/images/data/ad_090.jpg,203.47914523319616,78.38104102946696,True,"(168, 184, 208)"
+/mnt/data/images/data/ad_091.jpg,216.47582218792866,57.471049441547855,True,"(246, 245, 246)"
+/mnt/data/images/data/ad_092.jpg,213.92769290123456,61.049884974044126,True,"(245, 245, 245)"
+/mnt/data/images/data/ad_093.jpg,221.17849279835391,64.63690401219867,True,"(47, 108, 161)"
+/mnt/data/images/data/ad_094.jpg,223.18066015089164,62.92639675796876,True,"(11, 12, 18)"
+/mnt/data/images/data/ad_095.jpg,215.2353009259259,61.45635154556991,True,"(19, 21, 33)"
+/mnt/data/images/data/ad_096.jpg,174.041140260631,50.327884661259645,True,"(142, 162, 182)"
+/mnt/data/images/data/ad_097.jpg,238.36191186556928,54.928301935594995,True,"(0, 0, 0)"
+/mnt/data/images/data/ad_098.jpg,211.49965706447188,56.91387447325613,False,"(237, 242, 244)"
+/mnt/data/images/data/ad_099.jpg,188.50380401234568,67.7487250177473,True,"(61, 108, 141)"
+/mnt/data/images/data/ad_100.jpg,130.49864197530863,79.7678113209983,True,"(167, 170, 189)"
+/mnt/data/images/data/ad_101.jpg,100.56884859396433,79.56338979502682,True,"(191, 194, 199)"
+/mnt/data/images/data/ad_102.jpg,129.71015174897119,67.29081953515652,True,"(212, 205, 201)"
+/mnt/data/images/data/ad_103.jpg,114.64530092592592,87.69742032119456,True,"(207, 214, 219)"
+/mnt/data/images/data/ad_104.jpg,148.68549382716049,85.71740356599314,True,"(86, 108, 136)"
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_106.jpg,119.62836505486969,75.17700568837206,True,"(174, 168, 169)"
+/mnt/data/images/data/ad_107.jpg,89.89926611796982,65.74278115734926,False,"(4, 7, 11)"
+/mnt/data/images/data/ad_108.jpg,137.66165037722908,96.6484093339285,True,"(8, 9, 13)"
+NOT_FOUND,,,,
+/mnt/data/images/data/ad_110.jpg,197.76646347736624,50.60970641327263,True,"(13, 14, 14)"
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
+NOT_FOUND,,,,
