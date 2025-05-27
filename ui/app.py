@@ -76,42 +76,53 @@ def log_prediction(input_dict, prediction_label):
 # Streamlit UI
 st.title("🚀 AI-Driven Ad Creative Optimization DSS")
 
-st.header("📸 Upload Your A/B Creative Options")
-col1, col2 = st.columns(2)
+# Single Creative Prediction Section
+st.header("📢 Predict CTR for a Single Ad Creative")
+single_image = st.file_uploader("Upload Your Ad Creative", type=["jpg", "jpeg", "png"])
+single_caption = st.text_area("Enter Caption for Your Creative")
+platform = st.selectbox("Select Platform", ["Facebook", "Instagram"], key="platform_single")
 
+if single_image and single_caption:
+    if st.button("🎯 Predict CTR for Single Creative"):
+        img = Image.open(single_image).convert("RGB")
+        st.image(img, caption="Uploaded Creative", use_column_width=True)
+        pred, shap_vals, features = predict_ctr(img, single_caption)
+        label = le.inverse_transform([pred])[0]
+        
+        log_prediction({"creative":"Single", "caption":single_caption, "platform":platform}, label)
+        
+        st.subheader(f"📊 Predicted CTR Class: **{label}**")
+        st.write(features)
+        fig, ax = plt.subplots()
+        shap.summary_plot(shap_vals, features, plot_type="bar", show=False)
+        st.pyplot(fig)
+
+# A/B Testing Section
+st.header("📸 A/B Testing for Creative Optimization")
+col1, col2 = st.columns(2)
 with col1:
     image_a = st.file_uploader("Upload Creative A", type=["jpg", "jpeg", "png"], key="A")
     caption_a = st.text_area("Caption for Creative A", key="caption_A")
-
 with col2:
     image_b = st.file_uploader("Upload Creative B", type=["jpg", "jpeg", "png"], key="B")
     caption_b = st.text_area("Caption for Creative B", key="caption_B")
 
-platform = st.selectbox("Select Platform", ["Facebook", "Instagram"])
-
-# User selects preferred creative before prediction
 if image_a and image_b and caption_a and caption_b:
     user_choice = st.radio("💡 Which creative do you prefer?", ("Creative A", "Creative B"))
-    
     if st.button("🎯 Predict CTR and Recommend Best Creative"):
-        # Predict for Creative A
         img_a = Image.open(image_a).convert("RGB")
         pred_a, shap_a, features_a = predict_ctr(img_a, caption_a)
         label_a = le.inverse_transform([pred_a])[0]
         
-        # Predict for Creative B
         img_b = Image.open(image_b).convert("RGB")
         pred_b, shap_b, features_b = predict_ctr(img_b, caption_b)
         label_b = le.inverse_transform([pred_b])[0]
         
-        # Log predictions
         log_prediction({"creative":"A", "caption":caption_a, "platform":platform}, label_a)
         log_prediction({"creative":"B", "caption":caption_b, "platform":platform}, label_b)
         
-        # Show results side by side
         st.subheader("🔍 Prediction Results")
         colA, colB = st.columns(2)
-        
         with colA:
             st.image(img_a, caption=f"Creative A\nPredicted CTR: {label_a}")
             st.write(features_a)
@@ -119,7 +130,6 @@ if image_a and image_b and caption_a and caption_b:
             figA, axA = plt.subplots()
             shap.summary_plot(shap_a, features_a, plot_type="bar", show=False)
             st.pyplot(figA)
-        
         with colB:
             st.image(img_b, caption=f"Creative B\nPredicted CTR: {label_b}")
             st.write(features_b)
@@ -128,10 +138,7 @@ if image_a and image_b and caption_a and caption_b:
             shap.summary_plot(shap_b, features_b, plot_type="bar", show=False)
             st.pyplot(figB)
         
-        # Recommend best creative based on prediction
         priority = {"High": 3, "Medium": 2, "Low": 1}
         best_creative = "A" if priority[label_a] > priority[label_b] else "B"
         st.success(f"🌟 Recommended Best Creative: **Creative {best_creative}**")
-        
-        # Show user's preferred choice
         st.info(f"👤 Your preference: **{user_choice}**")
