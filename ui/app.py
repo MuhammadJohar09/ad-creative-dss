@@ -10,29 +10,19 @@ import xgboost as xgb
 import shap
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pickle
+import matplotlib.pyplot as plt
 
 # Load model and label encoder
 model = xgb.XGBClassifier()
-model.load_model("./models/xgb_ctr_model.json")
-
-with open("./models/label_encoder.pkl", "rb") as f:
+model.load_model("models/xgb_ctr_model.json")
+with open("models/label_encoder.pkl", "rb") as f:
     le = pickle.load(f)
 
-log_path = "logs/prediction_logs.csv"
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
-def log_prediction(input_dict):
-    input_dict["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    file_exists = os.path.isfile(log_path)
-    with open(log_path, mode="a", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=input_dict.keys())
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(input_dict)
-
+# SHAP setup
 explainer = shap.TreeExplainer(model)
 analyzer = SentimentIntensityAnalyzer()
 
+# Utility functions
 def calculate_brightness(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     return np.mean(hsv[:, :, 2])
@@ -57,83 +47,91 @@ def has_cta(text):
 def caption_length(text):
     return len(str(text))
 
-# UI
-st.title("AI-Driven Ad Creative Optimization DSS 🚀")
-mode = st.radio("Choose Mode", ["Single Prediction", "A/B Testing"])
+def predict_ctr(image, caption):
+    img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+    brightness = calculate_brightness(img_cv)
+    contrast = calculate_contrast(img_cv)
+    face_detected = int(detect_faces(img_cv))
+    sentiment_score = get_sentiment(caption)
+    contains_cta = int(has_cta(caption))
+    caption_len = caption_length(caption)
+    features = pd.DataFrame([[sentiment_score, contains_cta, caption_len, brightness, contrast, face_detected]],
+                            columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
+    pred = model.predict(features)[0]
+    shap_vals = explainer.shap_values(features)
+    return pred, shap_vals, features
 
-if mode == "Single Prediction":
-    img = st.file_uploader("Upload Ad Image", type=["jpg", "jpeg", "png"])
-    caption = st.text_area("Enter Caption")
-    platform = st.selectbox("Platform", ["Facebook", "Instagram"])
-    if img and caption:
-        image = Image.open(img).convert("RGB")
-        st.image(image, caption="Uploaded Ad", use_container_width=True)
-        img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        brightness = calculate_brightness(img_cv)
-        contrast = calculate_contrast(img_cv)
-        face_detected = int(detect_faces(img_cv))
-        sentiment = get_sentiment(caption)
-        cta = int(has_cta(caption))
-        caption_len = caption_length(caption)
-        
-        features = pd.DataFrame([[sentiment, cta, caption_len, brightness, contrast, face_detected]],
-                                columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
-        prediction = model.predict(features)[0]
-        predicted_label = le.inverse_transform([prediction])[0]
-        
-        st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
-        st.write("🔍 Model Features:")
-        st.write(features)
-        st.write("🔢 Encoded Prediction:", int(prediction))
-        
-        user_pref = st.radio("Do you like this creative?", ["Yes", "No"])
-        input_dict = features.iloc[0].to_dict()
-        input_dict["prediction_label"] = predicted_label
-        input_dict["user_preference"] = user_pref
-        log_prediction(input_dict)
+def log_prediction(input_dict, prediction_label):
+    input_dict["prediction"] = prediction_label
+    input_dict["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_path = "logs/prediction_logs.csv"
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    file_exists = os.path.isfile(log_path)
+    with open(log_path, mode="a", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=input_dict.keys())
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(input_dict)
 
-        shap_values = explainer.shap_values(features)
-        import matplotlib.pyplot as plt
-        fig, ax = plt.subplots()
-        shap.summary_plot(shap_values, features, plot_type="bar", show=False)
-        st.pyplot(fig)
+# Streamlit UI
+st.title("🚀 AI-Driven Ad Creative Optimization DSS")
 
-elif mode == "A/B Testing":
-    st.markdown("### 📊 Upload Two Ads for A/B Testing")
-    col1, col2 = st.columns(2)
-    with col1:
-        img_a = st.file_uploader("Upload Ad A", type=["jpg", "jpeg", "png"], key="a")
-        cap_a = st.text_area("Caption A", key="cap_a")
-    with col2:
-        img_b = st.file_uploader("Upload Ad B", type=["jpg", "jpeg", "png"], key="b")
-        cap_b = st.text_area("Caption B", key="cap_b")
+st.header("📸 Upload Your A/B Creative Options")
+col1, col2 = st.columns(2)
+
+with col1:
+    image_a = st.file_uploader("Upload Creative A", type=["jpg", "jpeg", "png"], key="A")
+    caption_a = st.text_area("Caption for Creative A", key="caption_A")
+
+with col2:
+    image_b = st.file_uploader("Upload Creative B", type=["jpg", "jpeg", "png"], key="B")
+    caption_b = st.text_area("Caption for Creative B", key="caption_B")
+
+platform = st.selectbox("Select Platform", ["Facebook", "Instagram"])
+
+# User selects preferred creative before prediction
+if image_a and image_b and caption_a and caption_b:
+    user_choice = st.radio("💡 Which creative do you prefer?", ("Creative A", "Creative B"))
     
-    if img_a and cap_a and img_b and cap_b:
-        def process_ad(img, caption):
-            image = Image.open(img).convert("RGB")
-            img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-            brightness = calculate_brightness(img_cv)
-            contrast = calculate_contrast(img_cv)
-            face_detected = int(detect_faces(img_cv))
-            sentiment = get_sentiment(caption)
-            cta = int(has_cta(caption))
-            caption_len = caption_length(caption)
-            features = pd.DataFrame([[sentiment, cta, caption_len, brightness, contrast, face_detected]],
-                                    columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
-            prediction = model.predict(features)[0]
-            label = le.inverse_transform([prediction])[0]
-            return label, features
+    if st.button("🎯 Predict CTR and Recommend Best Creative"):
+        # Predict for Creative A
+        img_a = Image.open(image_a).convert("RGB")
+        pred_a, shap_a, features_a = predict_ctr(img_a, caption_a)
+        label_a = le.inverse_transform([pred_a])[0]
         
-        label_a, features_a = process_ad(img_a, cap_a)
-        label_b, features_b = process_ad(img_b, cap_b)
+        # Predict for Creative B
+        img_b = Image.open(image_b).convert("RGB")
+        pred_b, shap_b, features_b = predict_ctr(img_b, caption_b)
+        label_b = le.inverse_transform([pred_b])[0]
         
-        st.subheader(f"🔴 Ad A Predicted CTR: **{label_a}**")
-        st.write(features_a)
-        st.subheader(f"🔵 Ad B Predicted CTR: **{label_b}**")
-        st.write(features_b)
+        # Log predictions
+        log_prediction({"creative":"A", "caption":caption_a, "platform":platform}, label_a)
+        log_prediction({"creative":"B", "caption":caption_b, "platform":platform}, label_b)
         
-        user_pref = st.radio("Which Ad do you prefer?", ["Ad A", "Ad B"])
-        log_prediction({
-            "Ad_A_prediction": label_a, "Ad_B_prediction": label_b,
-            "user_preference": user_pref
-        })
+        # Show results side by side
+        st.subheader("🔍 Prediction Results")
+        colA, colB = st.columns(2)
+        
+        with colA:
+            st.image(img_a, caption=f"Creative A\nPredicted CTR: {label_a}")
+            st.write(features_a)
+            st.write(f"Predicted Label: {label_a}")
+            figA, axA = plt.subplots()
+            shap.summary_plot(shap_a, features_a, plot_type="bar", show=False)
+            st.pyplot(figA)
+        
+        with colB:
+            st.image(img_b, caption=f"Creative B\nPredicted CTR: {label_b}")
+            st.write(features_b)
+            st.write(f"Predicted Label: {label_b}")
+            figB, axB = plt.subplots()
+            shap.summary_plot(shap_b, features_b, plot_type="bar", show=False)
+            st.pyplot(figB)
+        
+        # Recommend best creative based on prediction
+        priority = {"High": 3, "Medium": 2, "Low": 1}
+        best_creative = "A" if priority[label_a] > priority[label_b] else "B"
+        st.success(f"🌟 Recommended Best Creative: **Creative {best_creative}**")
+        
+        # Show user's preferred choice
+        st.info(f"👤 Your preference: **{user_choice}**")
