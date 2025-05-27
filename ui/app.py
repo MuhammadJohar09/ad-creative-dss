@@ -15,7 +15,6 @@ import matplotlib.pyplot as plt
 # Load model and label encoder
 model = xgb.XGBClassifier()
 model.load_model("models/xgb_ctr_model.json")
-
 with open("models/label_encoder.pkl", "rb") as f:
     le = pickle.load(f)
 
@@ -23,7 +22,10 @@ with open("models/label_encoder.pkl", "rb") as f:
 log_path = "logs/prediction_logs.csv"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-# Function to log predictions
+# Sentiment Analyzer
+analyzer = SentimentIntensityAnalyzer()
+
+# Logging function
 def log_prediction(input_dict, prediction_label):
     input_dict["prediction"] = prediction_label
     input_dict["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -33,12 +35,6 @@ def log_prediction(input_dict, prediction_label):
         if not file_exists:
             writer.writeheader()
         writer.writerow(input_dict)
-
-# SHAP setup
-explainer = shap.Explainer(model)
-
-# Sentiment analyzer
-analyzer = SentimentIntensityAnalyzer()
 
 # Feature extraction functions
 def calculate_brightness(image):
@@ -67,97 +63,95 @@ def caption_length(text):
 
 def predict_ctr(image, caption):
     img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-    brightness = calculate_brightness(img_cv)
-    contrast = calculate_contrast(img_cv)
-    face_detected = int(detect_faces(img_cv))
-    sentiment_score = get_sentiment(caption)
-    contains_cta = int(has_cta(caption))
-    caption_len = caption_length(caption)
-
     features = pd.DataFrame([[
-        sentiment_score, contains_cta, caption_len,
-        brightness, contrast, face_detected
+        get_sentiment(caption),
+        int(has_cta(caption)),
+        caption_length(caption),
+        calculate_brightness(img_cv),
+        calculate_contrast(img_cv),
+        int(detect_faces(img_cv))
     ]], columns=[
         "sentiment_score", "contains_cta", "caption_length",
         "brightness", "contrast", "face_detected"
     ])
-    prediction = model.predict(features)[0]
     shap_values = explainer(features)
-    return prediction, shap_values, features
+    pred = model.predict(features)[0]
+    return pred, shap_values, features
+
+# SHAP setup
+explainer = shap.Explainer(model)
 
 # Streamlit UI
 st.title("AI-Driven Ad Creative Optimization DSS")
-mode = st.radio("Select Mode", ["📷 Single Creative Prediction", "🆚 A/B Testing"])
 
-if mode == "📷 Single Creative Prediction":
+mode = st.radio("Select Mode", ["📸 Single Creative Prediction", "🆚 A/B Testing"])
+
+if mode == "📸 Single Creative Prediction":
+    st.header("📸 Single Ad Creative")
     uploaded_image = st.file_uploader("Upload Ad Image", type=["jpg", "jpeg", "png"])
     caption = st.text_area("Enter Caption")
-    platform = st.selectbox("Choose Platform", ["Facebook", "Instagram"], key="platform_single")
+    platform = st.selectbox("Choose Platform", ["Facebook", "Instagram"])
 
     if uploaded_image and caption:
         img = Image.open(uploaded_image).convert("RGB")
         st.image(img, caption="Uploaded Ad", use_container_width=True)
+        
+        pred, shap_values, features = predict_ctr(img, caption)
+        label = le.inverse_transform([pred])[0]
 
-        prediction, shap_values, features = predict_ctr(img, caption)
-        predicted_label = le.inverse_transform([prediction])[0]
-
-        log_prediction({"creative": "Single", "caption": caption, "platform": platform}, predicted_label)
-
-        st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
-        st.write("\n")
-        if predicted_label == "High":
-            st.success("✅ This ad is likely to perform well!")
+        st.subheader(f"📊 Predicted CTR Class: **{label}**")
+        if label.lower() == "high":
+            st.success("🚀 This ad is likely to perform very well!")
         else:
-            st.warning("⚠️ This ad might need improvement to increase CTR.")
+            st.warning("⚠️ This ad might not perform optimally. Consider revising!")
 
-        with st.expander("🔍 Explanation (SHAP)"):
-            fig, ax = plt.subplots()
-            shap.plots.bar(shap_values[0], show=False)
-            st.pyplot(fig)
+        log_prediction({"caption": caption, "platform": platform}, label)
+
+        with st.expander("🔍 Model Input Features"):
+            st.write(features)
+        with st.expander("🔍 SHAP Explanation"):
+            st.pyplot(shap.plots.bar(shap_values[0], show=False))
 
 elif mode == "🆚 A/B Testing":
+    st.header("🆚 A/B Testing: Compare Two Creatives")
     col1, col2 = st.columns(2)
     with col1:
-        image_a = st.file_uploader("Upload Creative A", type=["jpg", "jpeg", "png"], key="image_a")
-        caption_a = st.text_area("Enter Caption A", key="caption_a")
+        image_a = st.file_uploader("Upload Creative A", type=["jpg", "jpeg", "png"], key="A")
+        caption_a = st.text_area("Enter Caption A", key="A_text")
     with col2:
-        image_b = st.file_uploader("Upload Creative B", type=["jpg", "jpeg", "png"], key="image_b")
-        caption_b = st.text_area("Enter Caption B", key="caption_b")
+        image_b = st.file_uploader("Upload Creative B", type=["jpg", "jpeg", "png"], key="B")
+        caption_b = st.text_area("Enter Caption B", key="B_text")
 
-    if image_a and image_b and caption_a and caption_b:
-        platform_ab = st.selectbox("Select Platform for A/B Testing", ["Facebook", "Instagram"], key="platform_ab")
-        user_choice = st.radio("💡 Which creative do you prefer?", ("Creative A", "Creative B"))
-        if st.button("🎯 Predict CTR and Recommend Best Creative"):
+    platform = st.selectbox("Choose Platform", ["Facebook", "Instagram"], key="platform_ab")
+
+    if image_a and caption_a and image_b and caption_b:
+        if st.button("Predict A/B"):
             img_a = Image.open(image_a).convert("RGB")
-            pred_a, shap_a, features_a = predict_ctr(img_a, caption_a)
-            label_a = le.inverse_transform([pred_a])[0]
-
             img_b = Image.open(image_b).convert("RGB")
+
+            pred_a, shap_a, features_a = predict_ctr(img_a, caption_a)
             pred_b, shap_b, features_b = predict_ctr(img_b, caption_b)
+
+            label_a = le.inverse_transform([pred_a])[0]
             label_b = le.inverse_transform([pred_b])[0]
 
-            log_prediction({"creative":"A", "caption":caption_a, "platform":platform_ab}, label_a)
-            log_prediction({"creative":"B", "caption":caption_b, "platform":platform_ab}, label_b)
+            log_prediction({"creative":"A", "caption":caption_a, "platform":platform}, label_a)
+            log_prediction({"creative":"B", "caption":caption_b, "platform":platform}, label_b)
 
             st.subheader("🔍 Prediction Results")
             colA, colB = st.columns(2)
             with colA:
                 st.markdown(f"**Creative A CTR:** {label_a}")
-                figA, axA = plt.subplots()
-                shap.plots.bar(shap_a[0], show=False)
-                st.pyplot(figA)
+                st.pyplot(shap.plots.bar(shap_a[0], show=False))
             with colB:
                 st.markdown(f"**Creative B CTR:** {label_b}")
-                figB, axB = plt.subplots()
-                shap.plots.bar(shap_b[0], show=False)
-                st.pyplot(figB)
+                st.pyplot(shap.plots.bar(shap_b[0], show=False))
 
-            st.subheader("✅ Final Recommendation")
-            if label_a == "High" and label_b != "High":
-                st.success("✅ Recommend using Creative A")
-            elif label_b == "High" and label_a != "High":
-                st.success("✅ Recommend using Creative B")
-            elif label_a == "High" and label_b == "High":
-                st.info("Both creatives are likely to perform well!")
+            st.subheader("🎯 Recommended Creative")
+            if pred_a > pred_b:
+                st.success("✅ **Creative A is recommended** based on higher predicted CTR.")
+            elif pred_b > pred_a:
+                st.success("✅ **Creative B is recommended** based on higher predicted CTR.")
             else:
-                st.warning("⚠️ Neither ad is predicted to have High CTR. Consider revising creatives.")
+                st.info("⚖️ Both creatives have similar predicted CTR. Test both!")
+
