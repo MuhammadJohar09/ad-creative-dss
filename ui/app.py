@@ -12,22 +12,25 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pickle
 import matplotlib.pyplot as plt
 
+# Correct paths using os.path.join for cross-platform compatibility
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+model_path = os.path.join(base_dir, "Models", "xgb_ctr_model.json")
+encoder_path = os.path.join(base_dir, "Models", "label_encoder.pkl")
+log_path = os.path.join(base_dir, "Log", "prediction_logs.csv")
+
 # Load model and label encoder
 model = xgb.XGBClassifier()
-model.load_model("C:/Users/johar/.jupyter/ad-creative-dss/models/xgb_ctr_model.json")
-
-with open("C:/Users/johar/.jupyter/ad-creative-dss/models/label_encoder.pkl", "rb") as f:
+model.load_model("models/xgb_ctr_model.json")
+with open("models/label_encoder.pkl", "rb") as f:
     le = pickle.load(f)
 
-# Create folder if it doesn't exist
-log_path = "logs/prediction_logs.csv"
+# Ensure log directory exists
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 # Function to log predictions
 def log_prediction(input_dict, prediction_label):
     input_dict["prediction"] = prediction_label
     input_dict["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     file_exists = os.path.isfile(log_path)
     with open(log_path, mode="a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=input_dict.keys())
@@ -114,7 +117,6 @@ if mode == "Single Prediction":
         log_prediction(input_dict, predicted_label)
 
         st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
-
         st.subheader("🔍 Model Input Features")
         st.write(features)
 
@@ -169,7 +171,6 @@ elif mode == "A/B Testing":
 
             st.success(f"✅ You selected: **{user_choice}**")
 
-            # Optional: log A/B results
             dict_a["predicted"] = pred_a
             dict_b["predicted"] = pred_b
             dict_a["user_selected"] = user_choice

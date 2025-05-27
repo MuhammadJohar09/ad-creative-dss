@@ -1,16 +1,17 @@
-# 🧠 AI-Powered Ad Creative CTR Prediction DSS
+# 📈 AI-Powered Ad Creative CTR Predictor
 
-This Decision Support System (DSS) predicts Click-Through Rate (CTR) for ad creatives based on image and caption features, using XGBoost and SHAP explanations.
+This project leverages machine learning and computer vision techniques to predict the **Click-Through Rate (CTR)** for ad creatives based on image features, captions, and sentiment analysis. It also supports **A/B testing** to compare two ad versions.
+
+---
 
 ## 🚀 Features
-- Upload ad images and captions for CTR prediction.
-- Side-by-side A/B testing of two different ad creatives.
-- Logging of prediction results with timestamp and input details.
-- SHAP explanations for feature impact visualization.
-- Ready for deployment on Streamlit Cloud.
 
-## 🏗️ Setup
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ad-creative-dss.git
-   cd ad-creative-dss
+✅ **CTR Prediction** for uploaded ad images and captions  
+✅ **A/B Testing** interface to compare two creatives side-by-side  
+✅ **Logging** of predictions for analysis  
+✅ **SHAP Visualizations** to interpret model predictions  
+✅ Built with **Streamlit**, **XGBoost**, **OpenCV**, and **VADER Sentiment**
+
+---
+
+## 📂 Project Structure

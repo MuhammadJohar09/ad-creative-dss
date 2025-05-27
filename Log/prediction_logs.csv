@@ -1,0 +1,7 @@
+sentiment_score,contains_cta,caption_length,brightness,contrast,face_detected,caption,platform,prediction,timestamp
+0.0,0,28,92.66765089163238,57.169635827298194,1,"we are here, because of them",Facebook,Low,2025-05-27 21:29:03
+0.0,0,28,92.66765089163238,57.169635827298194,1,"we are here, because of them",Facebook,Low,2025-05-27 21:29:04
+0.0,0,28,92.66765089163238,57.169635827298194,1,we are here because of them.,Low,Ad Creative B,Low,2025-05-27 21:30:18
+0.2481,1,48,222.2611865569273,48.04280508021522,1,"dental solutions?
+we have you covered!
+Book now.",Medium,Ad Creative B,Medium,2025-05-27 21:30:18
