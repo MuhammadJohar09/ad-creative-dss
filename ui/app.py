@@ -21,11 +21,8 @@ with open("./models/label_encoder.pkl", "rb") as f:
 log_path = "logs/prediction_logs.csv"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-def log_prediction(input_dict, prediction_label, preference=None):
-    input_dict["prediction"] = prediction_label
+def log_prediction(input_dict):
     input_dict["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    if preference:
-        input_dict["preference"] = preference
     file_exists = os.path.isfile(log_path)
     with open(log_path, mode="a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=input_dict.keys())
@@ -62,14 +59,12 @@ def caption_length(text):
 
 # UI
 st.title("AI-Driven Ad Creative Optimization DSS 🚀")
-mode = st.radio("Select Mode", ["Single Prediction", "A/B Testing"])
+mode = st.radio("Choose Mode", ["Single Prediction", "A/B Testing"])
 
 if mode == "Single Prediction":
     img = st.file_uploader("Upload Ad Image", type=["jpg", "jpeg", "png"])
     caption = st.text_area("Enter Caption")
     platform = st.selectbox("Platform", ["Facebook", "Instagram"])
-    preference = st.radio("Would you like to submit your preference?", ["Yes", "No"])
-
     if img and caption:
         image = Image.open(img).convert("RGB")
         st.image(image, caption="Uploaded Ad", use_container_width=True)
@@ -80,22 +75,22 @@ if mode == "Single Prediction":
         sentiment = get_sentiment(caption)
         cta = int(has_cta(caption))
         caption_len = caption_length(caption)
-
+        
         features = pd.DataFrame([[sentiment, cta, caption_len, brightness, contrast, face_detected]],
                                 columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
         prediction = model.predict(features)[0]
         predicted_label = le.inverse_transform([prediction])[0]
-
-        input_dict = {
-            "sentiment_score": sentiment, "contains_cta": cta, "caption_length": caption_len,
-            "brightness": brightness, "contrast": contrast, "face_detected": face_detected
-        }
-        log_prediction(input_dict, predicted_label, preference if preference == "Yes" else None)
-
+        
         st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
         st.write("🔍 Model Features:")
         st.write(features)
         st.write("🔢 Encoded Prediction:", int(prediction))
+        
+        user_pref = st.radio("Do you like this creative?", ["Yes", "No"])
+        input_dict = features.iloc[0].to_dict()
+        input_dict["prediction_label"] = predicted_label
+        input_dict["user_preference"] = user_pref
+        log_prediction(input_dict)
 
         shap_values = explainer.shap_values(features)
         import matplotlib.pyplot as plt
@@ -112,27 +107,33 @@ elif mode == "A/B Testing":
     with col2:
         img_b = st.file_uploader("Upload Ad B", type=["jpg", "jpeg", "png"], key="b")
         cap_b = st.text_area("Caption B", key="cap_b")
-
+    
     if img_a and cap_a and img_b and cap_b:
-        def predict(img_file, cap):
-            image = Image.open(img_file).convert("RGB")
+        def process_ad(img, caption):
+            image = Image.open(img).convert("RGB")
             img_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
             brightness = calculate_brightness(img_cv)
             contrast = calculate_contrast(img_cv)
             face_detected = int(detect_faces(img_cv))
-            sentiment = get_sentiment(cap)
-            cta = int(has_cta(cap))
-            caption_len = caption_length(cap)
+            sentiment = get_sentiment(caption)
+            cta = int(has_cta(caption))
+            caption_len = caption_length(caption)
             features = pd.DataFrame([[sentiment, cta, caption_len, brightness, contrast, face_detected]],
                                     columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
-            pred = model.predict(features)[0]
-            label = le.inverse_transform([pred])[0]
+            prediction = model.predict(features)[0]
+            label = le.inverse_transform([prediction])[0]
             return label, features
-
-        label_a, features_a = predict(img_a, cap_a)
-        label_b, features_b = predict(img_b, cap_b)
-
-        st.markdown(f"### 🔴 Ad A Prediction: **{label_a}**")
+        
+        label_a, features_a = process_ad(img_a, cap_a)
+        label_b, features_b = process_ad(img_b, cap_b)
+        
+        st.subheader(f"🔴 Ad A Predicted CTR: **{label_a}**")
         st.write(features_a)
-        st.markdown(f"### 🔵 Ad B Prediction: **{label_b}**")
+        st.subheader(f"🔵 Ad B Predicted CTR: **{label_b}**")
         st.write(features_b)
+        
+        user_pref = st.radio("Which Ad do you prefer?", ["Ad A", "Ad B"])
+        log_prediction({
+            "Ad_A_prediction": label_a, "Ad_B_prediction": label_b,
+            "user_preference": user_pref
+        })
