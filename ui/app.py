@@ -66,54 +66,84 @@ def caption_length(text):
 
 # Streamlit UI
 st.title("AI-Driven Ad Creative Optimization DSS 🚀")
-uploaded_image = st.file_uploader("Upload Ad Image", type=["jpg", "jpeg", "png"])
-caption = st.text_area("Enter Caption")
-platform = st.selectbox("Choose Platform", ["Facebook", "Instagram"])
+ab_test_option = st.radio("Choose Option", ["Single Prediction", "A/B Testing"])
 
-if uploaded_image and caption:
-    img = Image.open(uploaded_image).convert("RGB")
-    st.image(img, caption="Uploaded Ad", use_container_width=True)  # updated from use_column_width
+if ab_test_option == "Single Prediction":
+    uploaded_image = st.file_uploader("Upload Ad Image", type=["jpg", "jpeg", "png"])
+    caption = st.text_area("Enter Caption")
+    platform = st.selectbox("Choose Platform", ["Facebook", "Instagram"])
 
-    # Preprocess
-    img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-    brightness = calculate_brightness(img_cv)
-    contrast = calculate_contrast(img_cv)
-    face_detected = int(detect_faces(img_cv))
+    if uploaded_image and caption:
+        img = Image.open(uploaded_image).convert("RGB")
+        st.image(img, caption="Uploaded Ad", use_container_width=True)
 
-    # Text features
-    sentiment_score = get_sentiment(caption)
-    contains_cta = int(has_cta(caption))
-    caption_len = caption_length(caption)
+        img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+        brightness = calculate_brightness(img_cv)
+        contrast = calculate_contrast(img_cv)
+        face_detected = int(detect_faces(img_cv))
+        sentiment_score = get_sentiment(caption)
+        contains_cta = int(has_cta(caption))
+        caption_len = caption_length(caption)
 
-    features = pd.DataFrame([[sentiment_score, contains_cta, caption_len, brightness, contrast, face_detected]],
-                            columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
+        features = pd.DataFrame([[sentiment_score, contains_cta, caption_len, brightness, contrast, face_detected]],
+                                columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
 
-    prediction = model.predict(features)[0]
-    predicted_label = le.inverse_transform([prediction])[0]
+        prediction = model.predict(features)[0]
+        predicted_label = le.inverse_transform([prediction])[0]
 
-    # Logging
-    input_dict = {
-        "sentiment_score": sentiment_score,
-        "contains_cta": contains_cta,
-        "caption_length": caption_len,
-        "brightness": brightness,
-        "contrast": contrast,
-        "face_detected": face_detected
-    }
-    log_prediction(input_dict, predicted_label)
+        input_dict = {
+            "sentiment_score": sentiment_score,
+            "contains_cta": contains_cta,
+            "caption_length": caption_len,
+            "brightness": brightness,
+            "contrast": contrast,
+            "face_detected": face_detected
+        }
+        log_prediction(input_dict, predicted_label)
 
-    # Display Results
-    st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
-    st.subheader("🔍 Model Input Features")
-    st.write(features)
-    st.subheader("🔢 Raw Prediction (Encoded)")
-    st.write(int(prediction))
-    st.subheader("🎯 Predicted CTR Label")
-    st.write(predicted_label)
+        st.subheader(f"📊 Predicted CTR Class: **{predicted_label}**")
+        st.write(features)
+        st.write("Encoded Prediction:", int(prediction))
+        st.write("Predicted Label:", predicted_label)
 
-    # SHAP Explanation (summary bar plot)
-    shap_values = explainer.shap_values(features)
-    import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    shap.summary_plot(shap_values, features, plot_type="bar", show=False)
-    st.pyplot(fig)
+        shap_values = explainer.shap_values(features)
+        import matplotlib.pyplot as plt
+        fig, ax = plt.subplots()
+        shap.summary_plot(shap_values, features, plot_type="bar", show=False)
+        st.pyplot(fig)
+
+elif ab_test_option == "A/B Testing":
+    st.markdown("### 📊 A/B Test: Upload Two Ad Versions")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        img1 = st.file_uploader("Upload Ad A", type=["jpg", "jpeg", "png"], key="ad_a")
+        caption1 = st.text_area("Enter Caption A", key="caption_a")
+
+    with col2:
+        img2 = st.file_uploader("Upload Ad B", type=["jpg", "jpeg", "png"], key="ad_b")
+        caption2 = st.text_area("Enter Caption B", key="caption_b")
+
+    if img1 and img2 and caption1 and caption2:
+        def predict_ad(image_file, caption):
+            img = Image.open(image_file).convert("RGB")
+            img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+            brightness = calculate_brightness(img_cv)
+            contrast = calculate_contrast(img_cv)
+            face_detected = int(detect_faces(img_cv))
+            sentiment_score = get_sentiment(caption)
+            contains_cta = int(has_cta(caption))
+            caption_len = caption_length(caption)
+            features = pd.DataFrame([[sentiment_score, contains_cta, caption_len, brightness, contrast, face_detected]],
+                                    columns=["sentiment_score", "contains_cta", "caption_length", "brightness", "contrast", "face_detected"])
+            prediction = model.predict(features)[0]
+            predicted_label = le.inverse_transform([prediction])[0]
+            return predicted_label, features
+
+        label_a, features_a = predict_ad(img1, caption1)
+        label_b, features_b = predict_ad(img2, caption2)
+
+        st.write("### 📈 Ad A Prediction:", label_a)
+        st.write(features_a)
+        st.write("### 📈 Ad B Prediction:", label_b)
+        st.write(features_b)
